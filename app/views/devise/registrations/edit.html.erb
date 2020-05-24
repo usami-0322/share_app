@@ -1,0 +1,29 @@
+<%= provide(:title, '編集') %>
+<h1>編集</h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <div class="form-group">
+        <%= f.label :name %><br />
+        <%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :area %><br />
+        <%= f.select :area, ["エリア1", "エリア2", "エリア3"], :prompt => "選択してください", class: 'form-control' %>
+      </div>
+
+      <div class="center">
+        <%= f.submit "変更", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-md-2 col-md-offset-5">
+    <%= button_to "アカウント削除", registration_path(resource_name), data: { confirm: "本当に削除しますか？" }, method: :delete, class: "btn btn-danger" %>
+  </div>
+</div>
+<div class="center">
+  <%= link_to "パスワード変更はこちらから", edit_user_path(current_user) %>
+</div>
+<%= link_to "Back", :back %>
