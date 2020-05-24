@@ -44,9 +44,10 @@ RSpec.configure do |config|
   # triggering implicit auto-inclusion in groups with matching metadata.
   config.shared_context_metadata_behavior = :apply_to_host_groups
 
-# The settings below are suggested to provide a good initial experience
-# with RSpec, but feel free to customize to your heart's content.
-config.include FactoryBot::Syntax::Methods
-config.include Devise::Test::ControllerHelpers, type: :controller
-config.include RequestSpecHelper, type: :request
+  # The settings below are suggested to provide a good initial experience
+  # with RSpec, but feel free to customize to your heart's content.
+  config.shared_context_metadata_behavior = :apply_to_host_groups
+  config.before(:all) do
+    FactoryBot.reload
+  end
 end
