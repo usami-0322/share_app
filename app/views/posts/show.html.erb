@@ -16,7 +16,7 @@
     <div class="card-body">
       <p class="card-text">
         カテゴリ：<%= @post.field %><br />
-        <%= @post.content %>
+        <%= @post.content %><br />
         <%= image_tag @post.picture.url if @post.picture? %>
       </p>
     </div>
