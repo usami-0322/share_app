@@ -15,7 +15,7 @@ gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'rails-i18n', '~> 5.1'
 gem 'carrierwave'
-gem 'rmagick'
+gem 'mini_magick'
 gem 'fog-aws'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'will_paginate'
