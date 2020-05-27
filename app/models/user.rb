@@ -7,6 +7,8 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :employee_number, presence: true, uniqueness: true
 
+  has_many :posts, dependent: :destroy
+
   # 登録時にメールアドレス不要にする
   def email_required?
     false
@@ -32,5 +34,9 @@ class User < ApplicationRecord
     result = update_attributes(params, *options)
     clean_up_passwords
     result
+  end
+
+  def feed
+    Post.where("user_id = ?", id)
   end
 end
