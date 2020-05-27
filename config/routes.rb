@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   get 'policy', to: 'home#policy'
 
   resources :users, only: [:index, :show, :edit, :update]
+  resources :posts, only: [:show, :create, :destroy]
 end
