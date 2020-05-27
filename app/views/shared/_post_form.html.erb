@@ -1,0 +1,21 @@
+<%= form_for(@post) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.select :field, ["売り上げ改善", "売り場作り", "接客"], :prompt => "選択して下さい(必須)" %>
+    <%= f.text_field :title, placeholder: "タイトルを入力してください(必須)" %>
+    <%= f.text_area :content, placeholder: "投稿してください" %>
+  </div>
+  <%= f.submit "投稿", class: "btn btn-primary" %>
+  <span class="custom-file">
+    <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+  </span>
+<% end %>
+
+<script type="text/javascript">
+  $('#post_picture').bind('change', function() {
+    var size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 5) {
+      alert('5GB以上です。ファイルを小さくしてください');
+    }
+  });
+</script>
