@@ -1,0 +1,6 @@
+<li>
+  <%= link_to user.name, user %>
+  <% if user.area.present? %>
+    <%= link_to user.area, user %>
+  <% end %>
+</li>
