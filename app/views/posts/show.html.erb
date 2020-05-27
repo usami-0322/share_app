@@ -1,0 +1,23 @@
+<% provide(:title, @post.title) %>
+<div class="row">
+  <div class="d-flex align-items-left mt-4 mb-4">
+    <section class="user_info">
+      <h3>
+        <%= @post.user.name %>
+        <%= @post.user.employee_number %>
+        <%= @post.user.area %>
+      </h3>
+    </section>
+  </div>
+  <div class="card">
+    <div class="card-header bg-info">
+      <h3>タイトル：<%= @post.title %></h3>
+    </div>
+    <div class="card-body">
+      <p class="card-text">
+        カテゴリ：<%= @post.field %><br />
+        <%= @post.content %>
+        <%= image_tag @post.picture.url if @post.picture? %>
+      </p>
+    </div>
+</div>
