@@ -1,11 +1,13 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :show, :edit, :update]
+
   def index
-    @users = User.all
+    @users = User.paginate(page: params[:page])
   end
 
   def show
     @user = User.find(params[:id])
+    @posts = @user.posts.paginate(page: params[:page])
   end
 
   def edit
@@ -31,4 +33,10 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:password, :password_confirmation, :current_password)
   end
+  
+  # # 正しいユーザーかどうかを確認
+  # def correct_user
+  #   @user = User.find(params[:id])
+  #   redirect_to(root_url) unless current_user?(@user)
+  # end
 end
