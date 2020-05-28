@@ -12,7 +12,7 @@ class PostsController < ApplicationController
       flash[:success] = "投稿しました"
       redirect_to root_url
     else
-      @feed_itrems = []
+      @feed_items = current_user.feed.paginate(page: params[:page])
       render 'home/top'
     end
   end
