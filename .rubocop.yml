@@ -12,3 +12,7 @@ AllCops:
     - 'lib/tasks/*'
     - 'vendor/**/*'
     - 'path/ruby'
+
+Airbnb/DefaultScope:
+  Exclude:
+    - 'app/models/post.rb'
