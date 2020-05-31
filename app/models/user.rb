@@ -40,7 +40,7 @@ class User < ApplicationRecord
     Post.all
   end
 
-  #いいね
+  # いいね
   def like(post)
     likes << post
   end
