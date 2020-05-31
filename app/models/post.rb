@@ -1,5 +1,7 @@
 class Post < ApplicationRecord
   belongs_to :user
+  has_many :favorites, dependent: :destroy
+  has_many :liked_by, through: :favorites, source: :user
   default_scope -> { order(created_at: :desc) }
   mount_uploader :picture, ImageUploader
   validates :user_id, presence: true

@@ -6,6 +6,8 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :employee_number, presence: true, uniqueness: true
   has_many :posts, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :likes, through: :favorites, source: :post
 
   # 登録時にメールアドレス不要にする
   def email_required?
@@ -36,5 +38,20 @@ class User < ApplicationRecord
 
   def feed
     Post.all
+  end
+
+  #いいね
+  def like(post)
+    likes << post
+  end
+
+  # いいね解除
+  def unlike(post)
+    favorites.find_by(post_id: post.id).destroy
+  end
+
+  # 現在のユーザーがいいねしてたらtrue
+  def likes?(post)
+    likes.include?(post)
   end
 end
