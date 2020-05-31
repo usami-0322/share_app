@@ -1,0 +1,9 @@
+<% @user ||= current_user %>
+<div class="stats">
+  <a href="<%= likes_user_path(@user) %>">
+    <strong id="likes" class="stat">
+      <%= @user.likes.count %>
+    </strong>
+    ファボ
+  </a>
+</div>
