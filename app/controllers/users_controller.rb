@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :show, :edit, :update]
+  before_action :authenticate_user!, only: [:index, :show, :edit, :update, :likes]
 
   def index
     @users = User.paginate(page: params[:page])
@@ -26,6 +26,12 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def likes
+    @user = User.find(params[:id])
+    @posts = @user.likes.paginate(page: params[:page])
+    render 'show_like'
   end
 
   private
