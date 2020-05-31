@@ -1,0 +1,22 @@
+<% provide(:title, 'My ファボ') %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1><%= @user.name %></h1>
+      <span><%= link_to "プロフィール", @user %></span>
+      <span><b>投稿:</b> <%= @user.posts.count %></span>
+    </section>
+    <section class="stats">
+      <%= render 'shared/stats' %>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <h3>My ファボ</h3>
+    <% if @user.likes.any? %>
+      <ol class="posts">
+        <%= render @posts %>
+      </ol>
+      <%= will_paginate @posts %>
+    <% end %>
+  </div>
+</div>
