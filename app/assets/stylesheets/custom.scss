@@ -144,6 +144,29 @@ aside {
   }
 }
 
+.stats {
+  overflow: auto;
+  margin-top: 0;
+  padding: 0;
+  a {
+    float: left;
+    padding: 0 10px;
+    border-left: 1px solid $gray-lighter;
+    color: gray;
+    &:first-child {
+      padding-left: 0;
+      border: 0;
+    }
+    &:hover {
+      text-decoration: none;
+      color: blue;
+    }
+  }
+  strong {
+    display: block;
+  }
+}
+
 //  forms
 
 input, textarea, select, .uneditable-input {
@@ -229,4 +252,17 @@ span.picture {
   input {
     border: 0;
   }
+}
+
+/* likes */
+
+.like-btn {
+  color: #8899a6;
+}
+.like-btn-unlike {
+  color: #ff2581;
+}
+.btn-default {
+  position: relative;
+  left: 60px;
 }
