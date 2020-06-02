@@ -1,0 +1,9 @@
+<%= form_with(model: [post, comment]) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_area :content, placeholder: "コメントを入力して下さい", class: "form-control" %>
+  </div>
+  <div class="col-md-2">
+    <%= f.submit "コメントする", class: "btn btn-primary" %>
+  </div>
+<% end %>
