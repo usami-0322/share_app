@@ -1,9 +1,11 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :destroy]
-  before_action :correct_user, only: [:destroy]
+  before_action :authenticate_user!, only: [:show, :create, :destroy]
+  before_action :correct_user, only: :destroy
 
   def show
     @post = Post.find(params[:id])
+    @comment = Comment.new
+    @comments = @post.comments
   end
 
   def create
