@@ -266,3 +266,14 @@ span.picture {
   position: relative;
   left: 60px;
 }
+
+/* comments */
+
+.comment {
+  list-style: none;
+  padding: 0;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+}
