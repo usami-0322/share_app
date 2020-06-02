@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :show, :edit, :update, :likes]
+  before_action :correct_user ,only:[:edit, :update]
 
   def index
     @users = User.paginate(page: params[:page])
@@ -38,5 +39,11 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:password, :password_confirmation, :current_password)
+  end
+
+  # 正しいユーザーかどうか確認
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to(root_url) unless @user == current_user
   end
 end
