@@ -20,6 +20,8 @@ gem 'fog-aws'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
+gem 'ransack'
+gem "chartkick"
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
