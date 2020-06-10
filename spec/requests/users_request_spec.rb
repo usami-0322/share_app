@@ -47,7 +47,6 @@ RSpec.describe "Users", type: :request do
 
       it "ユーザー情報が表示されていること" do
         expect(response.body).to include "example"
-        expect(response.body).to include "1234"
       end
     end
 
