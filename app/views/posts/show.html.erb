@@ -29,7 +29,7 @@
         </ol>
       </div>
       <% if user_signed_in? %>
-        <%=render 'comments/form', comment: @comment, post:@post %>
+        <%= render 'comments/form', comment: @comment, post:@post %>
       <% end %>
     </div>
   </div>

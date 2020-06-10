@@ -1,0 +1,13 @@
+<%= form_for(@manegemant) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <h4><i class="fa fa-line-chart" aria-hidden="true"></i> 売上入力</h4>
+    <%= f.label :budget, "予算　(変更がなければそのまま)" %><br />
+    <%= f.text_field :budget, placeholder: "予算入力" %>
+    <%= f.label :result, "売上実績" %><br />
+    <%= f.date_field :result_date, { include_blank: true, selected: Date.today } %>
+    <%= f.text_field :result, placeholder: "売上入力" %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+  </div>
+  <%= f.submit "登録", class: "btn btn-primary" %>
+<% end %>

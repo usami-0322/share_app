@@ -1,0 +1,33 @@
+<% provide(:title, '店舗売上実績')%>
+<h1>店舗売上実績</h1>
+
+<div><%= current_user.name %></div>
+
+<%= line_chart @data, width: "800px", height: "500px" %>
+
+<div class="search_form">
+  <%= search_form_for @q do |f| %>
+    <%= f.label :result_date, "表示期間選択" %>
+    <div class="input-group">
+      <%= f.date_select :result_date, { discard_day: true, include_blank: true }, { class: "form-control bootstrap-date" } %>
+      <span class="input-group-btn"><%= f.submit 'Search', class: "btn btn-primary" %></span>
+    </div>
+  <% end %>
+</div>
+<div class="numerical_index">
+  <%= render @manegemants %>
+</div>
+<div class="numerical_management">
+  <ul>
+    <div>
+      予算: <%= @budget %>円
+    </div>
+    <div>
+      <%= @result_date %><br>
+      売上: <%= @result %>円
+      </div>
+    <div>予算比：<%= @budget_ratio %>%</div>
+    <div>日割予算：<%= @daily_budget  %>円</div>
+    <div>今月売上合計：<%= @total_sales %></div>
+  </ul>
+</div>
