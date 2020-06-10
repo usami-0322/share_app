@@ -213,7 +213,10 @@ input {
 }
 
 /* posts */
-
+.post_form {
+  padding: 10px 0;
+  border-top: 1px solid #e8e8e8;
+}
 .posts {
   list-style: none;
   padding: 0;
@@ -275,5 +278,19 @@ span.picture {
   li {
     padding: 10px 0;
     border-top: 1px solid #e8e8e8;
+  }
+}
+
+/* manegemants */
+
+.search_form {
+  overflow: auto;
+  margin: 10px;
+  .input-group {
+    width: 225px;
+    .bootstrap-date {
+      display: inline-block;
+      width: auto;
+    }
   }
 }
