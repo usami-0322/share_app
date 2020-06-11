@@ -1,26 +1,23 @@
 class ManegemantsController < ApplicationController
   def index
     # chartkick用データ
-    @data = [['2019-06-01', 100], ['2019-06-02', 200], ['2019-06-03', 150]]
+    @chart_data = current_user.manegemants.order(result_date: :asc).pluck('result_date', 'result').to_h
 
     @q = current_user.manegemants.ransack(params[:q])
     @manegemants = @q.result(distinct: true).order(result_date: :desc)
-
-    # 月ごとの販売実績
+    # 月ごとの売上合計
     sales = current_user.manegemants.group("YEAR(created_at)").group("MONTH(result_date)").sum(:result)
-    @total_sales = sales.values
+    @total_sales = sales.values.last
 
-    # 予算比
-    @result = @manegemants.first.result
-    @budget = @manegemants.first.budget
-    @result_date = @manegemants.first.result_date
-    @budget_ratio = @result / @budget
-
-    # 日割り計算
-    today = Date.today
+    # 日割予算
+    today = @manegemants.first.result_date
     last_day = Date.new(today.year, today.month, -1)
     days_left = (last_day - today).to_i
-    @daily_budget = (@budget - @result) / days_left
+    @daily_budget = (@manegemants.first.budget - @total_sales) / days_left
+
+    # 達成率
+    @daily_budget = @total_sales /@manegemants.first.budget * 100
+
   end
 
   def create
