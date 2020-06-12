@@ -20,3 +20,8 @@ Airbnb/DefaultScope:
 Metrics/LineLength:
   Exclude:
     - 'app/controllers/manegemants_controller.rb'
+    - 'app/controllers/managemants_controller.rb'
+
+Style/RescueModifier:
+  Exclude:
+    - 'app/controllers/managemants_controller.rb'
