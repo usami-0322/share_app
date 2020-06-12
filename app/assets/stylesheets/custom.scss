@@ -269,16 +269,13 @@ span.picture {
   }
 }
 
-/* manegemants */
+/* managemants */
 
 .search_form {
   overflow: auto;
   margin: 10px;
-  .input-group {
-    width: 225px;
-    .bootstrap-date {
-      display: inline-block;
-      width: auto;
-    }
+  .bootstrap-date {
+    display: inline-block;
+    width: auto;
   }
 }
