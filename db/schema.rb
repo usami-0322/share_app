@@ -32,15 +32,14 @@ ActiveRecord::Schema.define(version: 2020_06_03_045106) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
-  create_table "manegemants", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "managemants", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "budget"
     t.integer "result"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.date "budget_date"
     t.date "result_date"
-    t.index ["user_id"], name: "index_manegemants_on_user_id"
+    t.index ["user_id"], name: "index_managemants_on_user_id"
   end
 
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -70,6 +69,6 @@ ActiveRecord::Schema.define(version: 2020_06_03_045106) do
   end
 
   add_foreign_key "comments", "users"
-  add_foreign_key "manegemants", "users"
+  add_foreign_key "managemants", "users"
   add_foreign_key "posts", "users"
 end
