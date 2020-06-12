@@ -7,6 +7,10 @@ ja:
         content: "内容"
         title: "タイトル"
         field: "カテゴリー"
+      managemant:
+        budget: "予算"
+        result_date: "売上日"
+        result: "売上"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
