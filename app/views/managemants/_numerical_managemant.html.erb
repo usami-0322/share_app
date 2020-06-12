@@ -1,0 +1,25 @@
+<h3>数値管理</h3>
+<table class="table table-bordered table-condensed">
+  <tbody>
+    <tr>
+      <th class="col">月間予算</th>
+      <td class="col"><%= @latest_budget %>円</td>
+    </tr>
+    <tr>
+      <th class="col">月間売上</th>
+      <td class="col"><%= @total_sales %>円</td>
+    </tr>
+    <tr>
+      <th class="col"><%= @latest_date %>売上</th>
+      <td class="col"><%= @latest_result %>円</td>
+    </tr>
+    <tr>
+      <th class="col">日割予算</th>
+      <td class="col"><%= @daily_budget %>円</td>
+    </tr>
+    <tr>
+      <th class="col">達成率</th>
+      <td class="col"><%= @achievement_rate %>％</td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,25 @@
+<% provide(:title, '店舗売上実績')%>
+<h1>売上実績</h1>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="managamant_form">
+      <%= render 'managemant_form' %>
+    </section>
+    <section class="numerical_management">
+      <%= render 'numerical_managemant' %>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <div class="search_form">
+      <%= render 'search_form' %>
+    </div>
+    <div class="chart">
+      <h3>売上グラフ</h3>
+      <%= column_chart @chart_data, discrete: true, xtitle: "日付", ytitle: "売上(円)", width: "600px", height: "200px" %>
+    </div>
+    <div class="numerical_index">
+      <h3>数値一覧</h3>
+      <%= render @search %>
+    </div>
+  </div>
+</div>

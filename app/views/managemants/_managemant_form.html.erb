@@ -1,9 +1,9 @@
-<%= form_for(@manegemant) do |f| %>
+<%= form_for(@managemant) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
+  <h4><i class="fa fa-line-chart" aria-hidden="true"></i> 売上入力</h4>
   <div class="field">
-    <h4><i class="fa fa-line-chart" aria-hidden="true"></i> 売上入力</h4>
     <%= f.label :budget, "予算　(変更がなければそのまま)" %><br />
-    <%= f.text_field :budget, value:  @latest_budget %>
+    <%= f.text_field :budget, value: @latest_budget %>
     <%= f.label :result, "売上実績" %><br />
     <%= f.date_field :result_date, { include_blank: true, selected: Date.today } %>
     <%= f.text_field :result, placeholder: "売上入力" %>
