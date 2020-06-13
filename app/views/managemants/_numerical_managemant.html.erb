@@ -19,7 +19,7 @@
     </tr>
     <tr>
       <th class="col">達成率</th>
-      <td class="col"><%= current_user.managemants.total_sales / @desc_data.latest_budget * 100 %>％</td>
+      <td class="col"><%= current_user.managemants.total_sales / @desc_data.latest_budget * 100 rescue 0 %>％</td>
     </tr>
   </tbody>
 </table>
