@@ -21,6 +21,7 @@
     <h1>GOOW</h1>
     <h2>数値管理<br>
     情報共有アプリケーション</h2>
-    <%= link_to "新規登録", new_user_registration_path, class: "btn btn-lg btn-info"%>
+    <%= link_to "新規登録", new_user_registration_path, class: "btn btn-lg btn-info" %>
+    <%= link_to 'ゲストログイン''（閲覧用）', users_guest_sign_in_path, method: :post , class: "btn btn-lg btn-danger" %>
   </div>
 <% end %>

@@ -11,6 +11,12 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :managemants, dependent: :destroy
 
+  def self.guest
+    find_or_create_by!(name: 'ゲストユーザー', employee_number: '12345') do |user|
+      user.password = SecureRandom.urlsafe_base64
+    end
+  end
+
   # 登録時にメールアドレス不要にする
   def email_required?
     false
