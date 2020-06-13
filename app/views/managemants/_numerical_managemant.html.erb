@@ -3,15 +3,15 @@
   <tbody>
     <tr>
       <th class="col">月間予算</th>
-      <td class="col"><%= @latest_budget %>円</td>
+      <td class="col"><%= @desc_data.latest_budget %>円</td>
     </tr>
     <tr>
       <th class="col">月間売上</th>
-      <td class="col"><%= @total_sales %>円</td>
+      <td class="col"><%= current_user.managemants.total_sales %>円</td>
     </tr>
     <tr>
-      <th class="col"><%= @latest_date %>売上</th>
-      <td class="col"><%= @latest_result %>円</td>
+      <th class="col"><%= @desc_data.latest_result_date %>売上</th>
+      <td class="col"><%= @desc_data.pluck(:result).first.to_i %>円</td>
     </tr>
     <tr>
       <th class="col">日割予算</th>
@@ -19,7 +19,7 @@
     </tr>
     <tr>
       <th class="col">達成率</th>
-      <td class="col"><%= @achievement_rate %>％</td>
+      <td class="col"><%= current_user.managemants.total_sales / @desc_data.latest_budget * 100 %>％</td>
     </tr>
   </tbody>
 </table>

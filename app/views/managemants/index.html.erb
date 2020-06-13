@@ -15,11 +15,11 @@
     </div>
     <div class="chart">
       <h3>売上グラフ</h3>
-      <%= column_chart @chart_data, discrete: true, xtitle: "日付", ytitle: "売上(円)", width: "600px", height: "200px" %>
+      <%= column_chart @managemants.chart_date, discrete: true, xtitle: "日付", ytitle: "売上(円)", width: "600px", height: "200px" %>
     </div>
     <div class="numerical_index">
       <h3>数値一覧</h3>
-      <%= render @search %>
+      <%= render @managemants.search %>
     </div>
   </div>
 </div>
