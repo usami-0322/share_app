@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Favorite, type: :model do
   let(:user) { create(:user) }
-  let(:post) { create(:post) }
+  let(:post) { create(:post, user: user) }
 
   it "user_idがなければ無効な状態である" do
     favorite = Favorite.new(user_id: nil)
