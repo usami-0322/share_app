@@ -4,13 +4,19 @@
       <th scope="col" style="width: 200px">日付</th>
       <th scope="col">予算</th>
       <th scope="col">売上</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th><%= managemant.result_date %></th>
-      <td style="width:250px"><%= managemant.budget %></td>
-      <td style="width:250px"><%= managemant.result %></td>
+      <td><%= managemant.result_date %></td>
+      <td style="width:230px"><%= managemant.budget %></td>
+      <td style="width:230px"><%= managemant.result %></td>
+      <td style="width:50px">
+        <% if managemant.user == current_user %>
+          <p><%= link_to '削除', managemant, method: :delete, date: {confirm: '本当に削除しますか？'}, class: 'btn btn-danger btn-xs' %></p>
+        <% end %>
+      </td>
     </tr>
   </tbody>
 </table>
