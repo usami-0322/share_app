@@ -24,8 +24,9 @@ class ManagemantsController < ApplicationController
     if @managemant.save
       flash[:success] = "入力しました"
       redirect_back(fallback_location: managemants_path)
-
     else
+      flash[:danger] = @managemant.errors.full_messages.join("<br>")
+      @managemant = current_user.managemants.build(managemant_params)
       redirect_back(fallback_location: managemants_path)
     end
   end

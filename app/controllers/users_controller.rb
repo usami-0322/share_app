@@ -21,7 +21,7 @@ class UsersController < ApplicationController
       @user.errors.add(:password, :blank)
       render 'edit'
     elsif @user.update_with_password(user_params)
-      flash[:notise] = "パスワードを変更しました"
+      flash[:success] = "パスワードを変更しました"
       bypass_sign_in @user
       redirect_to @user
     else
