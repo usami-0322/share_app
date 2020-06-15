@@ -1,5 +1,4 @@
 <%= form_for(@post) do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
   <h4><i class="fa fa-pencil" aria-hidden="true"></i> 週報入力</h4>
   <div class="field">
     <%= f.select :field, ["売上改善", "売り場作り", "接客"], :prompt => "選択して下さい(必須)" %>
