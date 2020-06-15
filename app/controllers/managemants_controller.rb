@@ -32,6 +32,10 @@ class ManagemantsController < ApplicationController
   end
 
   def destroy
+    @managemant = Managemant.find(params[:id])
+    @managemant.destroy
+    flash[:success] = "数値を削除しました"
+    redirect_to request.referrer || root_url
   end
 
   private
