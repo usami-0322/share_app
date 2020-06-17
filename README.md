@@ -1,24 +1,22 @@
-# README
+# GOOW
+命名由来は　good to know = 教えてくれてありがとう　を省略したものです。  
+GOOW社内の情報共有と自身の数値管理を行えるサービスです。  
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# URL
 
-Things you may want to cover:
+# 主な機能
+## ユーザー登録
+## 投稿
+## ファボ
+## コメント
+## 数値管理
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# 仕様技術
+・Ruby 2.6.3  
+・Ruby on Rails 5.2.2  
+・RSpec 3.9  
+・MySQL 5.7  
+・Docker  
+・Circle CI  
+・Devise  
+・chartkick  
