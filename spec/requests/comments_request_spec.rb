@@ -12,8 +12,9 @@ RSpec.describe "Posts", type: :request do
         it "コメントできること" do
           comment_params = FactoryBot.attributes_for(:comment)
           sign_in @user
-          post post_comments_path(@post.id), params: { comment: comment_params }
-          expect(response).to change(@user.comments, :count).by(1)
+          expect do
+            post post_comments_path(@post.id), params: { comment: comment_params }
+          end.to change(@user.comments, :count).by(1)
         end
       end
 
@@ -21,8 +22,9 @@ RSpec.describe "Posts", type: :request do
         it "コメントできないこと" do
           comment_params = FactoryBot.attributes_for(:comment, content: nil)
           sign_in @user
-          post post_comments_path(@post.id), params: { comment: comment_params }
-          expect(response).not_to change(@user.comments, :count)
+          expect do
+            post post_comments_path(@post.id), params: { comment: comment_params }
+          end.to_not change(@user.comments, :count)
         end
       end
     end
@@ -36,8 +38,9 @@ RSpec.describe "Posts", type: :request do
       it "コメントできないこと" do
         @other_user = build(:user, name: "example2", employee_number: "121212")
         comment_params = FactoryBot.attributes_for(:comment)
-        post post_comments_path(@post.id), params: { comment: comment_params }
-        expect(response).not_to change(@other_user.comments, :count)
+        expect do
+          post post_comments_path(@post.id), params: { comment: comment_params }
+        end.to_not change(@other_user.comments, :count)
       end
     end
   end
@@ -52,8 +55,9 @@ RSpec.describe "Posts", type: :request do
 
       it "コメントを削除できること" do
         sign_in @user
-        delete post_comment_path(@post.id, @comment.id)
-        expect(response).to change(@user.comments, :count).by(-1)
+        expect do
+          delete post_comment_path(@post.id, @comment.id)
+        end.to change(@user.comments, :count).by(-1)
       end
     end
 
@@ -67,8 +71,9 @@ RSpec.describe "Posts", type: :request do
 
       it "コメントを削除できないこと" do
         sign_in @other_user
-        delete post_comment_path(@post.id, @comment.id)
-        expect(response).not_to change(@user.comments, :count)
+        expect do
+          delete post_comment_path(@post.id, @comment.id)
+        end.not_to change(@user.comments, :count)
       end
     end
 
@@ -81,8 +86,9 @@ RSpec.describe "Posts", type: :request do
 
       it "コメントを削除できないこと" do
         @other_user = build(:user, name: "example2", employee_number: "121212")
-        delete post_comment_path(@post.id, @comment.id)
-        expect(response).not_to change(@user.comments, :count)
+        expect do
+          delete post_comment_path(@post.id, @comment.id)
+        end.to_not change(@user.comments, :count)
       end
     end
   end

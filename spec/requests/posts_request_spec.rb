@@ -11,8 +11,9 @@ RSpec.describe "Posts", type: :request do
         it "投稿を追加できること" do
           post_params = FactoryBot.attributes_for(:post)
           sign_in @user
-          post posts_path, params: { post: post_params }
-          expect(response).to change(@user.posts, :count).by(1)
+          expect do
+            post posts_path, params: { post: post_params }
+          end.to change(@user.posts, :count).by(1)
         end
       end
 
@@ -20,8 +21,9 @@ RSpec.describe "Posts", type: :request do
         it "投稿を追加できないこと" do
           post_params = FactoryBot.attributes_for(:post, content: nil)
           sign_in @user
-          post posts_path, params: { post: post_params }
-          expect(response).not_to change(@user.posts, :count)
+          expect do
+            post posts_path, params: { post: post_params }
+          end.not_to change(@user.posts, :count)
         end
       end
     end
@@ -30,8 +32,9 @@ RSpec.describe "Posts", type: :request do
       it "投稿を追加できないこと" do
         @user = build(:user)
         post_params = FactoryBot.attributes_for(:post)
-        post posts_path, params: { post: post_params }
-        expect(response).not_to change(@user.posts, :count)
+        expect do
+          post posts_path, params: { post: post_params }
+        end.not_to change(@user.posts, :count)
       end
     end
   end
@@ -45,8 +48,9 @@ RSpec.describe "Posts", type: :request do
 
       it "投稿を削除できること" do
         sign_in @user
-        delete post_path(@post)
-        expect(response).to change(@user.posts, :count).by(-1)
+        expect do
+          delete post_path(@post)
+        end.to change(@user.posts, :count).by(-1)
       end
     end
 
@@ -59,8 +63,9 @@ RSpec.describe "Posts", type: :request do
 
       it "投稿を削除できないこと" do
         sign_in @other_user
-        delete post_path(@post)
-        expect(response).not_to change(@user.posts, :count)
+        expect do
+          delete post_path(@post)
+        end.not_to change(@user.posts, :count)
       end
     end
 
@@ -72,8 +77,9 @@ RSpec.describe "Posts", type: :request do
 
       it "投稿を削除できないこと" do
         @other_user = build(:user, name: "example2", employee_number: "121212")
-        delete post_path(@post)
-        expect(response).not_to change(@user.posts, :count)
+        expect do
+          delete post_path(@post)
+        end.not_to change(@user.posts, :count)
       end
     end
   end

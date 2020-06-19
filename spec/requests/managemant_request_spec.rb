@@ -35,8 +35,9 @@ RSpec.describe "Managemants", type: :request do
       it "数値入力することができる" do
         managemant_params = FactoryBot.attributes_for(:managemant)
         sign_in @user
-        post managemants_path, params: { managemant: managemant_params }
-        expect(response).to change(@user.managemants, :count).by(1)
+        expect do
+          post managemants_path, params: { managemant: managemant_params }
+        end.to change(@user.managemants, :count).by(1)
       end
     end
 
@@ -49,8 +50,9 @@ RSpec.describe "Managemants", type: :request do
       it "数値入力することができない" do
         managemant_params = FactoryBot.attributes_for(:managemant, user: @user)
         sign_in @other_user
-        post managemants_path, params: { managemant: managemant_params }
-        expect(response).not_to change(@user.managemants, :count)
+        expect do
+          post managemants_path, params: { managemant: managemant_params }
+        end.not_to change(@user.managemants, :count)
       end
     end
 
@@ -62,8 +64,9 @@ RSpec.describe "Managemants", type: :request do
       it "数値入力することができない" do
         @other_user = build(:user, name: "example2", employee_number: "121212")
         managemant_params = FactoryBot.attributes_for(:managemant, user: @user)
-        post managemants_path, params: { managemant: managemant_params }
-        expect(response).not_to change(@user.managemants, :count)
+        expect do
+          post managemants_path, params: { managemant: managemant_params }
+        end.not_to change(@user.managemants, :count)
       end
     end
   end
@@ -77,8 +80,9 @@ RSpec.describe "Managemants", type: :request do
 
       it "数値を削除できること" do
         sign_in @user
-        delete managemant_path(@managemant.id)
-        expect(response).to change(@user.managemants, :count).by(-1)
+        expect do
+          delete managemant_path(@managemant.id)
+        end.to change(@user.managemants, :count).by(-1)
       end
     end
 
@@ -91,8 +95,9 @@ RSpec.describe "Managemants", type: :request do
 
       it "数値を削除できないこと" do
         sign_in @other_user
-        delete managemant_path(@managemant.id)
-        expect(response).not_to change(@user.managemants, :count)
+        expect do
+          delete managemant_path(@managemant.id)
+        end.not_to change(@user.managemants, :count)
       end
     end
 
@@ -104,8 +109,9 @@ RSpec.describe "Managemants", type: :request do
 
       it "数値を削除できないこと" do
         @other_user = build(:user, name: "example2", employee_number: "121212")
-        delete managemant_path(@managemant.id)
-        expect(response).not_to change(@user.managemants, :count)
+        expect do
+          delete managemant_path(@managemant.id)
+        end.not_to change(@user.managemants, :count)
       end
     end
   end
