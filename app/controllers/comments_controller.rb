@@ -2,12 +2,6 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!
   before_action :correct_user, only: :destroy
 
-  def index
-    @post = Post.find(params[:post_id])
-    @comments = @post.comment.all
-    @comment = @post.comments.build
-  end
-
   def create
     @post = Post.find(params[:post_id])
     @comment = @post.comments.build(comment_params)
