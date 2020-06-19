@@ -1,6 +1,6 @@
 <li id="post-<%= post.id %>">
   <span class="user"><%= link_to post.user.name, post.user %></span>
-  <span class="content">タイトル:<%= link_to post.title, post %></span>
+  <strong class="content">タイトル:<%= link_to post.title, post %></strong>
   <span class="content">
     <%= "カテゴリー:#{post.field}" %>
   </span>
@@ -13,7 +13,9 @@
   <span class="timestamp">
   <%= time_ago_in_words(post.created_at) %>前
     <% if current_user?(post.user) %>
-      <%= link_to "削除", post, method: :delete, date: { confirm: "本当に削除しますか？" } %>
+      <%= link_to post_path(post), method: :delete do %>
+        <i class="fa fa-trash"></i>
+      <% end %>
     <% end %>
   </span>
   <span class="like" id="like_form_<%= post.id %>">

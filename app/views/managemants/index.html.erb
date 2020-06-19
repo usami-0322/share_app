@@ -19,7 +19,8 @@
     </div>
     <div class="numerical_index">
       <h3>数値一覧</h3>
-      <%= render @managemants.search %>
+      <%= render 'managemant', managemants: @managemants.search %>
+      <%= will_paginate @managemants, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>
     </div>
   </div>
 </div>

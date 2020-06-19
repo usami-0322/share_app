@@ -7,16 +7,22 @@
       <th scope="col"></th>
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <td><%= managemant.result_date %></td>
-      <td style="width:230px"><%= managemant.budget %></td>
-      <td style="width:230px"><%= managemant.result %></td>
-      <td style="width:50px">
-        <% if managemant.user == current_user %>
-          <p><%= link_to '削除', managemant, method: :delete, date: {confirm: '本当に削除しますか？'}, class: 'btn btn-danger btn-xs' %></p>
-        <% end %>
-      </td>
-    </tr>
-  </tbody>
+  <% managemants.each do |managemant| %>
+    <tbody>
+      <tr>
+        <td><%= managemant.result_date %></td>
+        <td style="width:230px"><%= managemant.budget %></td>
+        <td style="width:230px"><%= managemant.result %></td>
+        <td style="width:50px">
+          <% if managemant.user == current_user %>
+            <p>
+              <%= link_to managemant_path(managemant), method: :delete do %>
+                <i class="fa fa-trash fa-lg"></i>
+              <% end %>
+            </p>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  <% end %>
 </table>
