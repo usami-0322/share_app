@@ -1,4 +1,18 @@
-<h3>数値管理</h3>
+<h3>- 数値管理 -</h3>
+<div class="progress_rate">
+  <p>進捗率</p>
+  <p><%= (current_user.managemants.total_sales.to_f / (@desc_data.latest_budget.to_f / @last_day.day.to_f * @today.day.to_f ) * 100).round(1) %>%
+  </p>
+  <p>
+    <% if (current_user.managemants.total_sales.to_f / (@desc_data.latest_budget.to_f / @last_day.day.to_f * @today.day.to_f ) * 100).round(1) >= 100 %>
+      <i class="fa fa-smile-o smile_red"></i>
+    <% elsif (current_user.managemants.total_sales.to_f / (@desc_data.latest_budget.to_f / @last_day.day.to_f * @today.day.to_f ) * 100).round(1) >= 80 %>
+      <i class="fa fa-meh-o meh_yellow"></i>
+    <% else %>
+      <i class="fa fa-frown-o frown_blue"></i>
+    <% end %>
+  </p>
+</div>
 <table class="table table-bordered table-condensed">
   <tbody>
     <tr>
@@ -15,11 +29,21 @@
     </tr>
     <tr>
       <th class="col">日割予算</th>
-      <td class="col"><%= @daily_budget %>円</td>
+      <td class="col">
+        <% if @daily_budget > 0 %>
+          <%= @daily_budget %>円
+        <% else %>
+          予算達成!!
+        <% end %>
+      </td>
     </tr>
     <tr>
-      <th class="col">達成率</th>
-      <td class="col"><%= current_user.managemants.total_sales / @desc_data.latest_budget * 100 rescue 0 %>％</td>
+      <th class="col">月間予算達成率</th>
+      <td class="col">
+      <% if @desc_data.latest_budget > 0 %>
+        <%= (current_user.managemants.total_sales / @desc_data.latest_budget.to_f * 100 ).round(1) %>％
+      <% end %>
+      </td>
     </tr>
   </tbody>
 </table>
