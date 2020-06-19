@@ -280,7 +280,30 @@ span.picture {
   }
 }
 
+.progress_rate p {
+  display: inline;
+  font-weight: bold;
+  font-size: large;
+}
+
+
+/* icon */
 .fa-trash {
   color: red;
   font-size: 1.5em !important;
+}
+
+.smile_red {
+  color: red;
+  font-size: 2.0em !important;
+}
+
+.meh_yellow {
+  color: yellow;
+  font-size: 2.0em !important;
+}
+
+.frown_blue {
+  color: blue;
+  font-size: 2.0em !important;
 }
