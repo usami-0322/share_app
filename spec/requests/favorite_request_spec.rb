@@ -58,9 +58,9 @@ RSpec.describe "Favorites", type: :request do
 
       it "お気に入りを取り消せないこと" do
         @other_user = build(:user, name: "example2", employee_number: "121212")
-        expect {
+        expect do
           delete favorite_path(id: @favorite.id)
-        }.not_to change(@user.favorites, :count)
+        end.not_to change(@user.favorites, :count)
       end
     end
   end

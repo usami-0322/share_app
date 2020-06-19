@@ -24,7 +24,7 @@ RSpec.describe "Posts", type: :request do
           sign_in @user
           expect do
             post post_comments_path(@post.id), params: { comment: comment_params }
-          end.to_not change(@user.comments, :count)
+          end.not_to change(@user.comments, :count)
         end
       end
     end
@@ -40,7 +40,7 @@ RSpec.describe "Posts", type: :request do
         comment_params = FactoryBot.attributes_for(:comment)
         expect do
           post post_comments_path(@post.id), params: { comment: comment_params }
-        end.to_not change(@other_user.comments, :count)
+        end.not_to change(@other_user.comments, :count)
       end
     end
   end
@@ -88,7 +88,7 @@ RSpec.describe "Posts", type: :request do
         @other_user = build(:user, name: "example2", employee_number: "121212")
         expect do
           delete post_comment_path(@post.id, @comment.id)
-        end.to_not change(@user.comments, :count)
+        end.not_to change(@user.comments, :count)
       end
     end
   end
