@@ -1,5 +1,6 @@
 class ManagemantsController < ApplicationController
   before_action :authenticate_user!
+  before_action :correct_user, only: :destroy
 
   def index
     @q = current_user.managemants.ransack(params[:q])
@@ -42,5 +43,10 @@ class ManagemantsController < ApplicationController
 
   def managemant_params
     params.require(:managemant).permit(:budget, :result, :result_date, :user_id)
+  end
+
+  def correct_user
+    @managemant = current_user.managemants.find_by(id: params[:id])
+    redirect_to root_url if @managemant.nil?
   end
 end
