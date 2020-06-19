@@ -4,7 +4,7 @@ class ManagemantsController < ApplicationController
 
   def index
     @q = current_user.managemants.ransack(params[:q])
-    @managemants = @q.result(distinct: true)
+    @managemants = @q.result(distinct: true).paginate(page: params[:page], per_page: 31)
     @managemant = current_user.managemants.build
     @desc_data = current_user.managemants.order(result_date: :desc)
     today = @desc_data.latest_result_date
