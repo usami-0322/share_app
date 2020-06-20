@@ -30,15 +30,4 @@ class Managemant < ApplicationRecord
     sales = group("YEAR(created_at)").group("MONTH(result_date)").sum(:result)
     sales.values.last.to_i
   end
-
-  # def self.daily_budget
-  #   today = self.latest_result_date
-  #   if @managemants.pluck(:result_date).empty?
-  #     returen 0
-  #   else
-  #     last_day = Date.new(today.year, today.month, -1)
-  #     days_left = (last_day - today).to_i
-  #     (self.latest_budget - current_user.managemants.total_sales) / days_left
-  #   end
-  # end
 end
