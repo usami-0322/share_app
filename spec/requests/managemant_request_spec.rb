@@ -9,8 +9,11 @@ RSpec.describe "Managemants", type: :request do
         get managemants_path
       end
 
-      it "正しく表示されること" do
+      it "リクエストが成功すること" do
         expect(response.status).to eq 200
+      end
+
+      it "正しく表示されること" do
         expect(response.body).to include "example"
       end
     end

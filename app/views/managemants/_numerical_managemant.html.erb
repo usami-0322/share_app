@@ -1,12 +1,13 @@
 <h3>- 数値管理 -</h3>
 <div class="progress_rate">
   <p>進捗率</p>
-  <p><%= (current_user.managemants.total_sales.to_f / (@desc_data.latest_budget.to_f / @last_day.day.to_f * @today.day.to_f ) * 100).round(1) %>%
+  <p>
+    <%= @progress_rate %>%
   </p>
   <p>
-    <% if (current_user.managemants.total_sales.to_f / (@desc_data.latest_budget.to_f / @last_day.day.to_f * @today.day.to_f ) * 100).round(1) >= 100 %>
-      <i class="fa fa-smile-o smile_red"></i>
-    <% elsif (current_user.managemants.total_sales.to_f / (@desc_data.latest_budget.to_f / @last_day.day.to_f * @today.day.to_f ) * 100).round(1) >= 80 %>
+    <% if @progress_rate >= 100 %>
+    <i class="fa fa-smile-o smile_red"></i>
+    <% elsif @progress_rate >= 80 %>
       <i class="fa fa-meh-o meh_yellow"></i>
     <% else %>
       <i class="fa fa-frown-o frown_blue"></i>
@@ -30,7 +31,9 @@
     <tr>
       <th class="col">日割予算</th>
       <td class="col">
-        <% if @daily_budget > 0 %>
+        <% if @daily_budget == 0 %>
+          0円
+        <% elsif @daily_budget > 0 %>
           <%= @daily_budget %>円
         <% else %>
           予算達成!!
