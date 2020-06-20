@@ -27,9 +27,5 @@ RSpec.describe 'Managemants', type: :feature do
       expect(page).to have_content "売上を入力してください"
       expect(page).to have_content "売上日を入力してください"
     end
-
-    scenario "自分の数値削除" do
-      expect { click_link "削除" }.to change(Managemant, :count).by(-1)
-    end
   end
 end

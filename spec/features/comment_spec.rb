@@ -10,14 +10,13 @@ RSpec.describe 'Posts', type: :feature do
   end
 
   context "ログイン後" do
-    scenario "コメントして削除する(成功)" do
+    scenario "コメントする(成功)" do
       visit post_path(post.id)
       expect(page).to have_content user.name
       fill_in "コメントを入力して下さい", with: "コメント"
       click_button "コメントする"
       expect(page).to have_content "コメントしました"
       expect(page).to have_content "コメント"
-      expect { click_on "削除" }.to change(Comment, :count).by(-1)
     end
 
     scenario "コメントする(失敗)" do

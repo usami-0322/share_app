@@ -29,10 +29,5 @@ RSpec.describe 'Posts', type: :feature do
       expect(page).to have_content "タイトルを入力してください"
       expect(page).to have_content "カテゴリーを入力してください"
     end
-
-    scenario "自分の投稿削除(成功)" do
-      visit root_path
-      expect { click_link "削除" }.to change(Post, :count).by(-1)
-    end
   end
 end
