@@ -4,12 +4,12 @@ RSpec.describe "Favorites", type: :request do
   describe "POST #create" do
     context "承認済みユーザーの場合" do
       before do
-        @user = FactoryBot.create(:user)
-        @post = FactoryBot.create(:post, user: @user)
+        @user = create(:user)
+        @post = create(:post, user: @user)
       end
 
       it "お気に入りできること" do
-        favorite_params = FactoryBot.attributes_for(:favorite, post_id: @post.id, user_id: @user.id)
+        favorite_params = attributes_for(:favorite, post_id: @post.id, user_id: @user.id)
         sign_in @user
         expect do
           post favorites_path(post_id: @post.id), params: { favorite: favorite_params }, xhr: true
@@ -19,13 +19,13 @@ RSpec.describe "Favorites", type: :request do
 
     context "ゲストの場合" do
       before do
-        @user = FactoryBot.create(:user)
-        @post = FactoryBot.create(:post, user: @user)
+        @user = create(:user)
+        @post = create(:post, user: @user)
       end
 
       it "お気に入りできないこと" do
         @other_user = build(:user, name: "example2", employee_number: "121212")
-        favorite_params = FactoryBot.attributes_for(:favorite, post_id: @post.id, user_id: @user.id)
+        favorite_params = attributes_for(:favorite, post_id: @post.id, user_id: @user.id)
         expect do
           post favorites_path(post_id: @post.id), params: { favorite: favorite_params }
         end.not_to change(@other_user.favorites, :count)
@@ -36,9 +36,9 @@ RSpec.describe "Favorites", type: :request do
   describe "DELETE #destroy" do
     context "承認済みユーザーの場合" do
       before do
-        @user = FactoryBot.create(:user)
-        @post = FactoryBot.create(:post, user: @user)
-        @favorite = FactoryBot.create(:favorite, post_id: @post.id, user_id: @user.id)
+        @user = create(:user)
+        @post = create(:post, user: @user)
+        @favorite = create(:favorite, post_id: @post.id, user_id: @user.id)
       end
 
       it "お気に入りを取り消せること" do
@@ -51,9 +51,9 @@ RSpec.describe "Favorites", type: :request do
 
     context "ゲストの場合" do
       before do
-        @user = FactoryBot.create(:user)
-        @post = FactoryBot.create(:post, user: @user)
-        @favorite = FactoryBot.create(:favorite, post_id: @post.id, user_id: @user.id)
+        @user = create(:user)
+        @post = create(:post, user: @user)
+        @favorite = create(:favorite, post_id: @post.id, user_id: @user.id)
       end
 
       it "お気に入りを取り消せないこと" do

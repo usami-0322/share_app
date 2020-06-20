@@ -4,7 +4,7 @@ RSpec.describe "Managemants", type: :request do
   describe "GET #index" do
     context "承認済みのユーザーの場合" do
       before do
-        @user = FactoryBot.create(:user)
+        @user = create(:user)
         sign_in @user
         get managemants_path
       end
@@ -32,11 +32,11 @@ RSpec.describe "Managemants", type: :request do
   describe "POST #create" do
     context "承認済みのユーザーの場合" do
       before do
-        @user = FactoryBot.create(:user)
+        @user = create(:user)
       end
 
       it "数値入力することができる" do
-        managemant_params = FactoryBot.attributes_for(:managemant)
+        managemant_params = attributes_for(:managemant)
         sign_in @user
         expect do
           post managemants_path, params: { managemant: managemant_params }
@@ -46,12 +46,12 @@ RSpec.describe "Managemants", type: :request do
 
     context "承認されていないユーザーの場合" do
       before do
-        @user = FactoryBot.create(:user)
-        @other_user = FactoryBot.create(:user, name: "example2", employee_number: "121212")
+        @user = create(:user)
+        @other_user = create(:user, name: "example2", employee_number: "121212")
       end
 
       it "数値入力することができない" do
-        managemant_params = FactoryBot.attributes_for(:managemant, user: @user)
+        managemant_params = attributes_for(:managemant, user: @user)
         sign_in @other_user
         expect do
           post managemants_path, params: { managemant: managemant_params }
@@ -61,12 +61,12 @@ RSpec.describe "Managemants", type: :request do
 
     context "ゲストユーザーの場合" do
       before do
-        @user = FactoryBot.create(:user)
+        @user = create(:user)
       end
 
       it "数値入力することができない" do
         @other_user = build(:user, name: "example2", employee_number: "121212")
-        managemant_params = FactoryBot.attributes_for(:managemant, user: @user)
+        managemant_params = attributes_for(:managemant, user: @user)
         expect do
           post managemants_path, params: { managemant: managemant_params }
         end.not_to change(@user.managemants, :count)
@@ -77,8 +77,8 @@ RSpec.describe "Managemants", type: :request do
   describe "DELETE #destroy" do
     context "承認済みのユーザーの場合" do
       before do
-        @user = FactoryBot.create(:user)
-        @managemant = FactoryBot.create(:managemant, user: @user)
+        @user = create(:user)
+        @managemant = create(:managemant, user: @user)
       end
 
       it "数値を削除できること" do
@@ -91,9 +91,9 @@ RSpec.describe "Managemants", type: :request do
 
     context "承認されていないユーザーの場合" do
       before do
-        @user = FactoryBot.create(:user)
-        @other_user = FactoryBot.create(:user, name: "example2", employee_number: "121212")
-        @managemant = FactoryBot.create(:managemant, user: @user)
+        @user = create(:user)
+        @other_user = create(:user, name: "example2", employee_number: "121212")
+        @managemant = create(:managemant, user: @user)
       end
 
       it "数値を削除できないこと" do
@@ -106,8 +106,8 @@ RSpec.describe "Managemants", type: :request do
 
     context "ゲストユーザーの場合" do
       before do
-        @user = FactoryBot.create(:user)
-        @managemant = FactoryBot.create(:managemant, user: @user)
+        @user = create(:user)
+        @managemant = create(:managemant, user: @user)
       end
 
       it "数値を削除できないこと" do

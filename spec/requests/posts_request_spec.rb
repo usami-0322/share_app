@@ -4,12 +4,12 @@ RSpec.describe "Posts", type: :request do
   describe "POST #create" do
     context "承認済みユーザーの場合" do
       before do
-        @user = FactoryBot.create(:user)
+        @user = create(:user)
       end
 
       context "有効な属性値の場合" do
         it "投稿を追加できること" do
-          post_params = FactoryBot.attributes_for(:post)
+          post_params = attributes_for(:post)
           sign_in @user
           expect do
             post posts_path, params: { post: post_params }
@@ -19,7 +19,7 @@ RSpec.describe "Posts", type: :request do
 
       context "無効な属性値の場合" do
         it "投稿を追加できないこと" do
-          post_params = FactoryBot.attributes_for(:post, content: nil)
+          post_params = attributes_for(:post, content: nil)
           sign_in @user
           expect do
             post posts_path, params: { post: post_params }
@@ -31,7 +31,7 @@ RSpec.describe "Posts", type: :request do
     context "ゲストの場合" do
       it "投稿を追加できないこと" do
         @user = build(:user)
-        post_params = FactoryBot.attributes_for(:post)
+        post_params = attributes_for(:post)
         expect do
           post posts_path, params: { post: post_params }
         end.not_to change(@user.posts, :count)
@@ -42,8 +42,8 @@ RSpec.describe "Posts", type: :request do
   describe "DELETE #destroy" do
     context "承認済みのユーザーの場合" do
       before do
-        @user = FactoryBot.create(:user)
-        @post = FactoryBot.create(:post, user: @user)
+        @user = create(:user)
+        @post = create(:post, user: @user)
       end
 
       it "投稿を削除できること" do
@@ -56,9 +56,9 @@ RSpec.describe "Posts", type: :request do
 
     context "承認されていないユーザーの場合" do
       before do
-        @user = FactoryBot.create(:user)
-        @other_user = FactoryBot.create(:user, name: "example2", employee_number: "121212")
-        @post = FactoryBot.create(:post, user: @user)
+        @user = create(:user)
+        @other_user = create(:user, name: "example2", employee_number: "121212")
+        @post = create(:post, user: @user)
       end
 
       it "投稿を削除できないこと" do
@@ -71,8 +71,8 @@ RSpec.describe "Posts", type: :request do
 
     context "ゲストの場合" do
       before do
-        @user = FactoryBot.create(:user)
-        @post = FactoryBot.create(:post, user: @user)
+        @user = create(:user)
+        @post = create(:post, user: @user)
       end
 
       it "投稿を削除できないこと" do

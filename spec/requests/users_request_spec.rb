@@ -4,7 +4,7 @@ RSpec.describe "Users", type: :request do
   describe "GET #index" do
     context "承認済みのユーザーの場合" do
       before do
-        @user = FactoryBot.create(:user)
+        @user = create(:user)
         sign_in @user
         get users_path
       end
@@ -36,7 +36,7 @@ RSpec.describe "Users", type: :request do
   describe "GET #show" do
     context "承認済みのユーザーの場合" do
       before do
-        @user = FactoryBot.create(:user)
+        @user = create(:user)
         sign_in @user
         get user_path(@user.id)
       end
@@ -52,7 +52,7 @@ RSpec.describe "Users", type: :request do
 
     context "ゲストの場合" do
       before do
-        @user = FactoryBot.create(:user)
+        @user = create(:user)
         get user_path(@user.id)
       end
 
@@ -68,7 +68,7 @@ RSpec.describe "Users", type: :request do
 
   describe "GET #edit" do
     before do
-      @user = FactoryBot.create(:user)
+      @user = create(:user)
       sign_in @user
       get edit_user_path(@user.id)
     end

@@ -4,13 +4,13 @@ RSpec.describe "Posts", type: :request do
   describe "POST #create" do
     context "承認済みユーザーの場合" do
       before do
-        @user = FactoryBot.create(:user)
-        @post = FactoryBot.create(:post, user: @user)
+        @user = create(:user)
+        @post = create(:post, user: @user)
       end
 
       context "有効な属性値の場合" do
         it "コメントできること" do
-          comment_params = FactoryBot.attributes_for(:comment)
+          comment_params = attributes_for(:comment)
           sign_in @user
           expect do
             post post_comments_path(@post.id), params: { comment: comment_params }
@@ -20,7 +20,7 @@ RSpec.describe "Posts", type: :request do
 
       context "無効な属性値の場合" do
         it "コメントできないこと" do
-          comment_params = FactoryBot.attributes_for(:comment, content: nil)
+          comment_params = attributes_for(:comment, content: nil)
           sign_in @user
           expect do
             post post_comments_path(@post.id), params: { comment: comment_params }
@@ -31,13 +31,13 @@ RSpec.describe "Posts", type: :request do
 
     context "ゲストユーザーの場合" do
       before do
-        @user = FactoryBot.create(:user)
-        @post = FactoryBot.create(:post, user: @user)
+        @user = create(:user)
+        @post = create(:post, user: @user)
       end
 
       it "コメントできないこと" do
         @other_user = build(:user, name: "example2", employee_number: "121212")
-        comment_params = FactoryBot.attributes_for(:comment)
+        comment_params = attributes_for(:comment)
         expect do
           post post_comments_path(@post.id), params: { comment: comment_params }
         end.not_to change(@other_user.comments, :count)
@@ -48,9 +48,9 @@ RSpec.describe "Posts", type: :request do
   describe "DELETE #destroy" do
     context "承認済みのユーザーの場合" do
       before do
-        @user = FactoryBot.create(:user)
-        @post = FactoryBot.create(:post, user: @user)
-        @comment = FactoryBot.create(:comment, user: @user, post: @post)
+        @user = create(:user)
+        @post = create(:post, user: @user)
+        @comment = create(:comment, user: @user, post: @post)
       end
 
       it "コメントを削除できること" do
@@ -63,10 +63,10 @@ RSpec.describe "Posts", type: :request do
 
     context "承認されていないユーザーの場合" do
       before do
-        @user = FactoryBot.create(:user)
-        @other_user = FactoryBot.create(:user, name: "example2", employee_number: "121212")
-        @post = FactoryBot.create(:post, user: @user)
-        @comment = FactoryBot.create(:comment, user: @user, post: @post)
+        @user = create(:user)
+        @other_user = create(:user, name: "example2", employee_number: "121212")
+        @post = create(:post, user: @user)
+        @comment = create(:comment, user: @user, post: @post)
       end
 
       it "コメントを削除できないこと" do
@@ -79,9 +79,9 @@ RSpec.describe "Posts", type: :request do
 
     context "ゲストの場合" do
       before do
-        @user = FactoryBot.create(:user)
-        @post = FactoryBot.create(:post, user: @user)
-        @comment = FactoryBot.create(:comment, user: @user, post: @post)
+        @user = create(:user)
+        @post = create(:post, user: @user)
+        @comment = create(:comment, user: @user, post: @post)
       end
 
       it "コメントを削除できないこと" do
