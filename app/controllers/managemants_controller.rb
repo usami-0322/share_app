@@ -7,13 +7,24 @@ class ManagemantsController < ApplicationController
     @managemants = @q.result(distinct: true).paginate(page: params[:page], per_page: 31)
     @managemant = current_user.managemants.build
     @desc_data = current_user.managemants.order(result_date: :desc)
-    @today = @desc_data.latest_result_date
+
+    # 月間予算達成率
+    today = @desc_data.latest_result_date
     if @managemants.pluck(:result_date).empty?
       @daily_budget = 0
     else
-      @last_day = Date.new(@today.year, @today.month, -1)
-      days_left = (@last_day - @today).to_i
+      last_day = Date.new(today.year, today.month, -1)
+      days_left = (last_day - today).to_i
       @daily_budget = (@desc_data.latest_budget - current_user.managemants.total_sales) / days_left
+    end
+
+    # 進捗率
+    @end_of_month = Date.new(Time.now.year, Time.now.month, -1).mday.to_f
+    if @managemants.pluck(:result_date).empty?
+      @progress_rate = 0
+    else
+      today_day = @desc_data.latest_result_date.mday.to_f
+      @progress_rate = (current_user.managemants.total_sales.to_f / (@desc_data.latest_budget.to_f / @end_of_month * today_day) * 100).round(1)
     end
   end
 
