@@ -116,6 +116,20 @@ footer {
   }
 }
 
+.search_form {
+  overflow: auto;
+  margin: 10px;
+  .input-group {
+    width: 300px;
+    .form-control {
+      width: 250px;
+    }
+    .btn {
+      width: 50px;
+    }
+  }
+}
+
 // sidebar
 
 aside {
@@ -271,13 +285,9 @@ span.picture {
 
 /* managemants */
 
-.search_form {
-  overflow: auto;
-  margin: 10px;
-  .bootstrap-date {
-    display: inline-block;
-    width: auto;
-  }
+.bootstrap-date {
+  display: inline-block;
+  width: auto;
 }
 
 .progress_rate p {
@@ -299,7 +309,7 @@ span.picture {
 }
 
 .meh_yellow {
-  color: yellow;
+  color: green;
   font-size: 2.0em !important;
 }
 
