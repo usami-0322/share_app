@@ -15,13 +15,13 @@
     <div class="card-body">
       <p class="card-text">
         カテゴリ：<%= @post.field %><br />
-        <%= @post.content %><br />
+        <%= simple_format(@post.content) %><br />
         <%= image_tag @post.picture.url if @post.picture? %>
       </p>
     </div>
   </div>
   <div class="comment_index">
-      <h5>コメント</h5>
+      <h4><i class="fa fa-comments"></i>コメント</h4>
       <div id="comment_area">
         <ol class="comment">
           <%= render partial: 'comments/index', collection: @comments, as: :comment %>
