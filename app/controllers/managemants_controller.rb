@@ -15,7 +15,11 @@ class ManagemantsController < ApplicationController
     else
       last_day = Date.new(today.year, today.month, -1)
       days_left = (last_day - today).to_i
-      @daily_budget = (@desc_data.latest_budget - current_user.managemants.total_sales) / days_left
+      if days_left == 0
+        @daily_budget = @desc_data.latest_budget - current_user.managemants.total_sales
+      else
+        @daily_budget = (@desc_data.latest_budget - current_user.managemants.total_sales) / days_left
+      end
     end
 
     # 進捗率
