@@ -1,0 +1,10 @@
+<%= search_form_for @q do |f| %>
+  <i class="fa fa-search"></i> <%= f.label :name_cont, '社員検索' %>
+  <div class="input-group">
+    <%= f.text_field :name_cont, placeholder: "社員入力...",
+                      class: 'form-control' %>
+    <span class="input-group-btn">
+      <%= f.submit '検索', class: "btn btn-primary" %>
+    </span>
+  </div>
+<% end %>

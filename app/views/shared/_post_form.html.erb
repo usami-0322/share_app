@@ -1,7 +1,7 @@
 <%= form_for(@post) do |f| %>
   <h4><i class="fa fa-pencil" aria-hidden="true"></i> 週報入力</h4>
   <div class="field">
-    <%= f.select :field, ["売上改善", "売り場作り", "接客"], :prompt => "選択して下さい(必須)" %>
+    <%= f.select :field, ["売上改善", "売場作り", "接客"], :prompt => "選択して下さい(必須)" %>
     <%= f.text_field :title, placeholder: "タイトルを入力してください(必須)" %>
     <%= f.text_area :content, placeholder: "投稿してください(必須)" %>
   </div>

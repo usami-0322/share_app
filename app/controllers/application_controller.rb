@@ -3,6 +3,12 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   add_flash_types :success, :info, :warning, :danger
 
+  private
+
+  def posts_search_params
+    params.require(:q).permit(:content_or_field_or_title_cont)
+  end
+
   protected
 
   # methodをオーバーライドする。

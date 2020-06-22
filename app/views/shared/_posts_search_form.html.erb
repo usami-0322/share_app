@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="search_form">
+    <%= search_form_for @q, url: @url do |f| %>
+      <i class="fa fa-search"></i> <%= f.label :content_cont, '投稿検索'%>
+      <div class="input-group">
+        <%= f.search_field :content_or_field_or_title_cont, placeholder: "キーワード入力..", class: 'form-control' %>
+        <span class="input-group-btn">
+          <%= f.submit '検索', class: "btn btn-primary" %>
+        </span>
+      </div>
+    <% end %>
+  </div>
+</div>

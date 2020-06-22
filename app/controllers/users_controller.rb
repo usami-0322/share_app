@@ -3,12 +3,26 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
 
   def index
-    @users = User.paginate(page: params[:page])
+    if params[:q] && params[:q].reject { |key, value| value.blank? }.present?
+      @q = User.ransack(search_params)
+      @title = "検索結果"
+    else
+      @q = User.ransack
+      @title = "社員一覧"
+    end
+    @users = @q.result.paginate(page: params[:page])
   end
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.paginate(page: params[:page])
+    if params[:q] && params[:q].reject { |key, value| value.blank? }.present?
+      @q = @user.posts.ransack(post_search_params)
+      @posts = @q.result.paginate(page: params[:page])
+    else
+      @q = Post.ransack
+      @posts = @user.posts.paginate(page: params[:page])
+    end
+    @url = user_path(@user)
   end
 
   def edit
@@ -45,5 +59,9 @@ class UsersController < ApplicationController
   def correct_user
     @user = User.find(params[:id])
     redirect_to(root_url) unless @user == current_user
+  end
+
+  def search_params
+    params.require(:q).permit(:name_cont)
   end
 end

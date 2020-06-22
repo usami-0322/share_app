@@ -14,6 +14,7 @@ class PostsController < ApplicationController
       flash[:success] = "投稿しました"
       redirect_to root_url
     else
+      @q = Post.none.ransack
       @feed_items = current_user.feed.paginate(page: params[:page])
       flash[:danger] = @post.errors.full_messages.join("<br>")
       render 'home/top'
