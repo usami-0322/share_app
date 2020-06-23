@@ -8,6 +8,7 @@ class ManagemantsController < ApplicationController
     @managemant = current_user.managemants.build
     @desc_data = current_user.managemants.order(result_date: :desc)
 
+    ## TODO: ↓はmanagemantモデルのクラスメソッドにする方が良い
     # 月間予算達成率
     today = @desc_data.latest_result_date
     if @managemants.pluck(:result_date).empty?
@@ -22,6 +23,7 @@ class ManagemantsController < ApplicationController
       end
     end
 
+    ## TODO: ↓はmanagemantモデルのクラスメソッドにする方が良い
     # 進捗率
     @end_of_month = Date.new(Time.now.year, Time.now.month, -1).mday.to_f
     if @managemants.pluck(:result_date).empty?
@@ -36,9 +38,11 @@ class ManagemantsController < ApplicationController
     @managemant = current_user.managemants.build(managemant_params)
     @managemant.user_id = current_user.id
     if @managemant.save
+      ## TODO: こういうフラッシュメッセージの設定は親クラスレベルで共通化した方が良いかもしれません
       flash[:success] = "入力しました"
       redirect_back(fallback_location: managemants_path)
     else
+      ## TODO: こういうフラッシュメッセージの設定は親クラスレベルで共通化した方が良いかもしれません
       flash[:danger] = @managemant.errors.full_messages.join("<br>")
       @managemant = current_user.managemants.build(managemant_params)
       redirect_back(fallback_location: managemants_path)
@@ -46,6 +50,7 @@ class ManagemantsController < ApplicationController
   end
 
   def destroy
+    ## TODO: @はいらないような気がします
     @managemant = Managemant.find(params[:id])
     @managemant.destroy
     flash[:success] = "数値を削除しました"
@@ -60,6 +65,7 @@ class ManagemantsController < ApplicationController
 
   def correct_user
     @managemant = current_user.managemants.find_by(id: params[:id])
+    ## TODO: コレはTOPページに戻るという仕様で良いのでしょうか？
     redirect_to root_url if @managemant.nil?
   end
 end
