@@ -1,39 +1,57 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  it "名前、社員番号、パスワード,確認用パスワードがあれば有効な状態である" do
-    user = build(:user)
-    expect(user).to be_valid
+  context "name(名前)、employee_number(社員番号)、password(パスワード),password_confirmation(確認用パスワード)がある場合" do
+    example "有効な状態である" do
+      user = build(:user)
+      expect(user).to be_valid
+    end
   end
 
-  it "名前がなければ無効な状態である" do
-    user = build(:user, name: nil)
-    user.valid?
-    expect(user.errors[:name]).to include("が空になっています")
-  end
+  describe "validates" do
+    before do
+      user.valid?
+    end
 
-  it "社員番号がなければ無効な状態である" do
-    user = build(:user, employee_number: nil)
-    user.valid?
-    expect(user.errors[:employee_number]).to include("が空になっています")
-  end
+    context "name(名前)がnilの場合" do
+      let(:user) { build(:user, name: nil) }
 
-  it "重複した社員番号なら無効な状態である" do
-    create(:user)
-    user2 = build(:user)
-    user2.valid?
-    expect(user2.errors[:employee_number]).to include("はすでに存在します")
-  end
+      example "エラーになる" do
+        expect(user.errors[:name]).to include("が空になっています")
+      end
+    end
 
-  it "パスワードがないなら無効な状態である" do
-    user = build(:user, password: nil)
-    user.valid?
-    expect(user.errors[:password]).to include("が空になっています")
-  end
+    context "employee_number(社員番号)がnilの場合" do
+      let(:user) { build(:user, employee_number: nil) }
 
-  it "パスワードと確認用パスワードが一致しないなら無効な状態である" do
-    user = build(:user, password_confirmation: "")
-    user.valid?
-    expect(user.errors[:password_confirmation]).to include("とパスワードの入力が一致しません")
+      example "エラーになる" do
+        expect(user.errors[:employee_number]).to include("が空になっています")
+      end
+    end
+
+    context "重複した社員番号の場合" do
+      let(:other_user) { create(:user) }
+      let(:user) { build(:user, employee_number: other_user.employee_number) }
+
+      example "エラーになる" do
+        expect(user.errors[:employee_number]).to include("はすでに存在します")
+      end
+    end
+
+    context "password(パスワード)がnilの場合" do
+      let(:user) { build(:user, password: nil) }
+
+      example "エラーになる" do
+        expect(user.errors[:password]).to include("が空になっています")
+      end
+    end
+
+    context "パスワードと確認用パスワードが一致しない場合" do
+      let(:user) { build(:user, password_confirmation: "") }
+
+      example "エラーになる" do
+        expect(user.errors[:password_confirmation]).to include("とパスワードの入力が一致しません")
+      end
+    end
   end
 end

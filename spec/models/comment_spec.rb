@@ -4,7 +4,7 @@ RSpec.describe Comment, type: :model do
   let(:user) { create(:user) }
   let!(:post) { create(:post, user: user) }
 
-  it "コメント,post_id,user_idがあれば有効な状態である" do
+  example "コメント,post_id,user_idがあれば有効な状態である" do
     comment = Comment.new(
       content: "new content",
       user_id: "1",
@@ -15,17 +15,17 @@ RSpec.describe Comment, type: :model do
     expect(comment).to be_valid
   end
 
-  it "コメントがなければ無効な状態である" do
+  example "コメントがなければ無効な状態である" do
     comment = Comment.new(content: nil)
     expect(comment).not_to be_valid
   end
 
-  it "user_idがなければ無効な状態である" do
+  example "user_idがなければ無効な状態である" do
     comment = Comment.new(user_id: nil)
     expect(comment).not_to be_valid
   end
 
-  it "post_idがなければ無効な状態である" do
+  example "post_idがなければ無効な状態である" do
     comment = Comment.new(post_id: nil)
     expect(comment).not_to be_valid
   end
