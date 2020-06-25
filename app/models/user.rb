@@ -45,7 +45,7 @@ class User < ApplicationRecord
   end
 
   def feed
-    Post.all
+    Post.all.includes(:user)
   end
 
   # いいね
