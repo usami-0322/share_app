@@ -37,9 +37,9 @@ class Managemant < ApplicationRecord
 
   # 日割予算
   def self.daily_budget(params: params)
-    today = self.order(result_date: :desc).pluck(:result_date).first
+    today = order(result_date: :desc).pluck(:result_date).first
     # 入力値が空の場合
-    if self.ransack(params).result(distinct: true).paginate(page: params, per_page: 31).pluck(:result_date).empty?
+    if ransack(params).result(distinct: true).paginate(page: params).pluck(:result_date).empty?
       return 0
     else
       last_day = Date.new(today.year, today.month, -1)
@@ -47,9 +47,9 @@ class Managemant < ApplicationRecord
       if days_left == 0
         return 0
       else
-        sales = self.group("YEAR(created_at)").group("MONTH(result_date)").sum(:result)
+        sales = group("YEAR(created_at)").group("MONTH(result_date)").sum(:result)
         total_sales = sales.values.last.to_i
-        return (self.order(result_date: :desc).pluck(:budget).first.to_i - total_sales) / days_left
+        return (order(result_date: :desc).pluck(:budget).first.to_i - total_sales) / days_left
       end
     end
   end
@@ -57,12 +57,12 @@ class Managemant < ApplicationRecord
   # 進捗率
   def self.progress_rate(params: params)
     month = Date.new(Time.now.year, Time.now.month, -1).mday.to_f
-    today = self.order(result_date: :desc).pluck(:result_date).first
-    if self.ransack(params).result(distinct: true).paginate(page: params, per_page: 31).pluck(:result_date).empty?
+    if ransack(params).result(distinct: true).paginate(page: params).pluck(:result_date).empty?
       return 0
     else
-      today_day = self.order(result_date: :desc).latest_result_date.mday.to_f
-      return (self.total_sales.to_f / (self.order(result_date: :desc).pluck(:budget).first.to_f / month * today_day) * 100).round(1)
+      sort_latest_budget = order(result_date: :desc).latest_budget
+      today_day = order(result_date: :desc).latest_result_date.mday.to_f
+      return (total_sales.to_f / (sort_latest_budget.to_f / month * today_day) * 100).round(1)
     end
   end
 end
