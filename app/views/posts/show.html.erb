@@ -21,15 +21,14 @@
     </div>
   </div>
   <div class="comment_index">
-      <h4><i class="fa fa-comments"></i>コメント</h4>
-      <div id="comment_area">
-        <ol class="comment">
-          <%= render partial: 'comments/index', collection: @comments, as: :comment %>
-        </ol>
-      </div>
-      <% if user_signed_in? %>
-        <%= render 'comments/form', comment: @comment, post:@post %>
-      <% end %>
+    <h4><i class="fa fa-comments"></i>コメント</h4>
+    <div id="comment_area">
+      <ol class="comment">
+        <%= render partial: 'comments/index', collection: @comments, as: :comment %>
+      </ol>
     </div>
+    <% if user_signed_in? %>
+      <%= render 'comments/form', comment: @comment, post:@post %>
+    <% end %>
   </div>
 </div>
