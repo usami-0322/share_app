@@ -2,12 +2,12 @@
 <div class="progress_rate">
   <p>進捗率</p>
   <p>
-    <%= @progress_rate %>%
+    <%= current_user.managemants.progress_rate %>%
   </p>
   <p>
-    <% if @progress_rate >= 100 %>
+    <% if current_user.managemants.progress_rate >= 100 %>
     <i class="fa fa-smile-o smile_red"></i>
-    <% elsif @progress_rate >= 80 %>
+    <% elsif current_user.managemants.progress_rate >= 80 %>
       <i class="fa fa-meh-o meh_yellow"></i>
     <% else %>
       <i class="fa fa-frown-o frown_blue"></i>
@@ -31,10 +31,10 @@
     <tr>
       <th class="col">日割予算</th>
       <td class="col">
-        <% if @daily_budget == 0 %>
+        <% if current_user.managemants.daily_budget == 0 %>
           0円
-        <% elsif @daily_budget > 0 %>
-          <%= @daily_budget %>円
+        <% elsif current_user.managemants.daily_budget > 0 %>
+          <%= current_user.managemants.daily_budget %>円
         <% else %>
           予算達成!!
         <% end %>
