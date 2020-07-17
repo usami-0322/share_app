@@ -17,7 +17,7 @@ class FavoritesController < ApplicationController
     current_user.unlike(@post)
     respond_to do |format|
       format.html { redirect_to request.referrer || root_url }
-        format.js
+      format.js
     end
   end
 end
