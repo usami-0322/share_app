@@ -2,7 +2,8 @@
 <div class="stats">
   <a href="<%= likes_user_path(@user) %>">
     <strong id="likes" class="stat">
-      <i class="fa fa-heart-o"></i> <%= @user.likes.count %>ファボ
+      <%= @user.likes.count %>
     </strong>
+    ファボ
   </a>
 </div>
