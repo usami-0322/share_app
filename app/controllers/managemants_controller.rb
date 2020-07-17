@@ -13,7 +13,7 @@ class ManagemantsController < ApplicationController
     @managemant = current_user.managemants.build(managemant_params)
     @managemant.user_id = current_user.id
     if @managemant.save
-      flash[:success] = "入力しました"
+      flash[:success] = "入力しました!"
       redirect_back(fallback_location: managemants_path)
     else
       flash[:danger] = @managemant.errors.full_messages.join("<br>")
