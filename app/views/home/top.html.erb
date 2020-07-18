@@ -18,10 +18,11 @@
     </div>
   </div>
 <% else %>
-  <div class="center jumbotron">
+  <div class="jumbotron">
     <h1>GOOW</h1>
-    <h2>数値管理<br>
-    情報共有アプリケーション</h2>
+    <p>個人数値管理と</p>
+    <p>みんなで情報共有</p>
+    <p>していこう！</p>
     <%= link_to "新規登録", new_user_registration_path, class: "btn btn-lg btn-info" %>
     <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post , class: "btn btn-lg btn-danger" %>
   </div>
