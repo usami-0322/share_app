@@ -37,6 +37,8 @@ gem 'ransack'
 gem "chartkick"
 gem 'chartable'
 
+gem 'database_cleaner'
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'
@@ -48,7 +50,6 @@ group :development, :test do
   gem 'rubocop-airbnb'
   gem 'capybara'
   gem 'bullet'
-  gem 'database_cleaner'
 end
 
 group :development do
