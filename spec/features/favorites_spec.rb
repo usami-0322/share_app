@@ -16,10 +16,10 @@ RSpec.describe 'Favorites', type: :feature do
       expect(page).to have_content "タイトル"
       expect(page).to have_content "初投稿"
       expect do
-        click_button "0"
+        click_button "0", match: :first
       end.to change(user.likes, :count).by(1)
       expect do
-        click_button "1"
+        click_button "1", match: :first
       end.to change(user.likes, :count).by(-1)
     end
   end
