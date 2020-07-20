@@ -5,6 +5,7 @@
   -webkit-box-sizing: border-box;
   box-sizing:         border-box;
 }
+$light-gray: #777;
 // 全体
 
 body {
@@ -104,8 +105,17 @@ footer {
   @include box_sizing;
 }
 
-// Users index
+// top
+.jumbotron {
+  background-image: image-url("top.png");
+  background-size: cover;
+  height: 650px;
+  h1 {
+    text-align: left;
+  }
+}
 
+// Users index
 .users {
   list-style: none;
   margin: 0;
