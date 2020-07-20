@@ -48,6 +48,7 @@ group :development, :test do
   gem 'rubocop-airbnb'
   gem 'capybara'
   gem 'bullet'
+  gem 'database_cleaner'
 end
 
 group :development do
