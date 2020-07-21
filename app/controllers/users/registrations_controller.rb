@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  # before_action :configure_sign_up_params, only: [:create]
+  before_action :check_gest, only: %i[update destroy]
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
@@ -62,5 +62,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def update_resource(resource, params)
     resource.update_without_current_password(params)
+  end
+
+  def check_guest
+    if resource.employee_number == '12345'
+      redirect_to root_path, alert: 'ゲストユーザーは変更・削除できません。'
+    end
   end
 end
