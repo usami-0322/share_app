@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  before_action :check_gest, only: [:update, :destroy]
+  before_action :check_gest, only: [:destroy]
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
@@ -66,7 +66,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def check_guest
     if resource.employee_number == '12345'
-      redirect_to root_path, alert: 'ゲストユーザーは変更・削除できません。'
+      redirect_to root_path, alert: 'ゲストユーザーは削除できません。'
     end
   end
 end
