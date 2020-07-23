@@ -4,7 +4,7 @@
 GOOW社内の情報共有と自身の数値管理を行えるサービスです。  
 
 # URL
-https://goow-20200717042443.herokuapp.com/
+https://goow-20200723052407.herokuapp.com/
 
 # 主な機能
 <img width="1196" alt="スクリーンショット 2020-07-21 10 48 10" src="https://user-images.githubusercontent.com/60215135/88003432-d4b17800-cb3f-11ea-9965-a73df0167714.png">　　
