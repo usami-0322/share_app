@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  before_action :check_gest, only: [:destroy]
+  before_action :check_guest, only: :destroy
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
@@ -52,12 +52,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # The path used after sign up.
   def after_inactive_sign_up_path_for(resource)
-    root_path
+    managemants_path
   end
 
   # The path used after update.
   def after_update_path_for(resource)
-    root_path
+    managemants_path
   end
 
   def update_resource(resource, params)
@@ -66,7 +66,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def check_guest
     if resource.employee_number == '12345'
-      redirect_to root_path, alert: 'ゲストユーザーは削除できません。'
+      redirect_to managemants_path, alert: 'ゲストユーザーは削除できません。'
     end
   end
 end
