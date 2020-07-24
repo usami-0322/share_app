@@ -8,6 +8,15 @@ https://goow-20200723052407.herokuapp.com/
 
 # 主な機能
 <img width="1196" alt="スクリーンショット 2020-07-21 10 48 10" src="https://user-images.githubusercontent.com/60215135/88003432-d4b17800-cb3f-11ea-9965-a73df0167714.png">　　
+## 個人管理部分
+この部分は他社員に見られることはありません。
+### 数値入力
+数値入力には「予算」、「売上日」、「売上」を入力することができます。
+### 数値管理  
+・進捗率　＝ 日割予算に対しての実績率  
+  100％以上<img width="43" alt="スクリーンショット 2020-06-22 17 32 17" src="https://user-images.githubusercontent.com/60215135/85660590-c2831c00-b6f0-11ea-9c7a-d4be95cae109.png">　80%以上<img width="44" alt="スクリーンショット 2020-06-22 17 37 17" src="https://user-images.githubusercontent.com/60215135/85660649-d6c71900-b6f0-11ea-8446-88ff1d465870.png"> 80%未満<img width="43" alt="スクリーンショット 2020-06-22 17 34 29" src="https://user-images.githubusercontent.com/60215135/85660731-ee9e9d00-b6f0-11ea-823d-16e18318d1e2.png">  
+・日割予算 = 予算 - 月間売上　/ 残り日数  
+・月間予算達成率 = 月間売上　/ 予算  
 ## 共有部分　　
 ### ユーザー登録　　
 名前、社員番号、パスワードを入力することで登録することができます。  
@@ -22,15 +31,8 @@ https://goow-20200723052407.herokuapp.com/
 他社員の投稿での疑問点等を気軽にコメントで尋ねることができます。気軽に他社員とのコミュニケーションを取ることができます。  
 ### 検索
 気になるキーワードや社員を検索することができます。
-## 個人管理部分
-この部分は他社員に見られることはありません。
-### 数値入力
-数値入力には「予算」、「売上日」、「売上」を入力することができます。
-### 数値管理  
-・進捗率　＝ 日割予算に対しての実績率  
-  100％以上<img width="43" alt="スクリーンショット 2020-06-22 17 32 17" src="https://user-images.githubusercontent.com/60215135/85660590-c2831c00-b6f0-11ea-9c7a-d4be95cae109.png">　80%以上<img width="44" alt="スクリーンショット 2020-06-22 17 37 17" src="https://user-images.githubusercontent.com/60215135/85660649-d6c71900-b6f0-11ea-8446-88ff1d465870.png"> 80%未満<img width="43" alt="スクリーンショット 2020-06-22 17 34 29" src="https://user-images.githubusercontent.com/60215135/85660731-ee9e9d00-b6f0-11ea-823d-16e18318d1e2.png">  
-・日割予算 = 予算 - 月間売上　/ 残り日数  
-・月間予算達成率 = 月間売上　/ 予算  
+
+
 # 仕様技術  
 ・Ruby 2.6.3  
 ・Ruby on Rails 5.2.2  
