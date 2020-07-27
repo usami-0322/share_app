@@ -300,6 +300,14 @@ span.picture {
   width: auto;
 }
 
+.chart h3, .numerical_index h3, .numerical_management h3 {
+  padding: 1rem 2rem;
+  border-left: 6px double #000;
+  background: #f4f4f4;
+}
+
+
+
 .progress_rate p {
   display: inline;
   font-weight: bold;
