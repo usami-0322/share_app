@@ -18,7 +18,7 @@
       <%= column_chart @managemants.chart_date, xtitle: "日付", ytitle: "売上(円)", width: "600px", height: "200px" %>
     </div>
     <div class="numerical_index">
-      <h3>- 数値一覧 -</h3>
+      <h3>数値一覧</h3>
       <%= render 'managemant', managemants: @managemants.search %>
       <%= will_paginate @managemants, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>
     </div>
